@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "375179448704",
+    "project_id": "cotarprecos-1cec9",
+    "storage_bucket": "cotarprecos-1cec9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:375179448704:android:81d67f618ed86b20dfb165",
+        "android_client_info": {
+          "package_name": "com.example.cotarpreco"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDX2-9w1qRwZ2-h7O3H3D0RJ73Bv2c0dgU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
