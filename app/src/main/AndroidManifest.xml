@@ -13,7 +13,13 @@
         android:theme="@style/Theme.CotarPreco"
         tools:targetApi="31">
         <activity
-            android:name=".autenticacao.LoginActivity"
+            android:name=".activity.SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Splash.Activity">
+
+        </activity>
+        <activity
+            android:name=".activity.autenticacao.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +28,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".autenticacao.CriarContaActivity"
+            android:name=".activity.autenticacao.CriarContaActivity"
             android:exported="false" />
         <activity
             android:name=".activity.MainActivity"

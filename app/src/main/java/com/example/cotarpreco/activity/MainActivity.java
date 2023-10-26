@@ -10,7 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cotarpreco.R;
-import com.example.cotarpreco.autenticacao.LoginActivity;
+import com.example.cotarpreco.activity.autenticacao.LoginActivity;
 import com.example.cotarpreco.helper.FirebaseHelper;
 
 public class MainActivity extends AppCompatActivity {
