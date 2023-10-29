@@ -52,15 +52,14 @@ public class CriarContaActivity extends AppCompatActivity {
 
         tab_layout.setElevation(0);
         tab_layout.setupWithViewPager(view_pager);
-
     }
 
     private void iniciaComponentes(){
-        tab_layout = findViewById(R.id.tab_layout);
-        view_pager = findViewById(R.id.view_pager);
-
         TextView text_titulo = findViewById(R.id.text_titulo);
         text_titulo.setText("Cadastre-se");
+
+        tab_layout = findViewById(R.id.tab_layout);
+        view_pager = findViewById(R.id.view_pager);
     }
 
 }

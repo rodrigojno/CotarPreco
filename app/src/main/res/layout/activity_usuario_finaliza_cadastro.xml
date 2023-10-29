@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/bg_app"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragment.UsuarioFragment">
+    tools:context=".activity.usuario.UsuarioFinalizaCadastroActivity">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include">
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <LinearLayout
@@ -31,62 +29,61 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="E-mail"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:text="Nome"
+                android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/edt_email"
+                android:id="@+id/edt_nome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/bg_edit"
-                android:drawableStart="@drawable/ic_email"
+                android:background="@drawable/bg_edit2"
+                android:drawableStart="@drawable/ic_user_on"
                 android:drawablePadding="16dp"
-                android:hint="Digite seu e-mail"
-                android:inputType="textEmailAddress"
+                android:hint="Nome"
+                android:inputType="textCapWords|textPersonName"
                 android:padding="16dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Senha"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:text="Telefone"
+                android:textSize="16sp" />
 
-            <EditText
-                android:id="@+id/edt_senha"
+            <com.santalu.maskara.widget.MaskEditText
+                android:id="@+id/edt_telefone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/bg_edit"
-                android:drawableStart="@drawable/ic_password"
+                android:inputType="number"
+                app:mask="(__) _____-____"
+                app:maskCharacter="_"
+                android:background="@drawable/bg_edit2"
+                android:padding="16dp"
+                android:drawableStart="@drawable/ic_telefone"
                 android:drawablePadding="16dp"
-                android:hint="Digite sua senha"
-                android:inputType="textPassword"
-                android:padding="16dp" />
+                android:hint="Ex.: (99) 91234-1234"
+                app:maskStyle="completable" />
 
             <android.widget.Button
-                android:id="@+id/btn_criar_conta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/bg_edit"
-                android:text="Criar conta"
+                android:backgroundTint="@color/cor_inicial_icone"
+                android:text="Finalizar"
+                android:onClick="validaDados"
                 android:textAllCaps="false"
-                android:textColor="@color/cor_inicial_icone"
-                android:textStyle="bold" />
+                android:textColor="@color/white" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:layout_gravity="center"
-                android:indeterminateTint="@color/white"
+                android:layout_marginTop="8dp"
+                android:theme="@style/ThemeProgressBar2"
                 android:visibility="gone"
                 tools:visibility="visible" />
 
@@ -94,4 +91,4 @@
 
     </ScrollView>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -44,7 +44,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/edit_email"
+                android:id="@+id/edt_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -65,7 +65,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/edit_senha"
+                android:id="@+id/edt_senha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -81,8 +81,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/bg_edit"
-                android:onClick="logar"
                 android:text="Entrar"
+                android:onClick="validaDados"
                 android:textAllCaps="false"
                 android:textColor="@color/cor_inicial_icone"
                 android:textStyle="bold" />
@@ -118,8 +118,8 @@
                 android:id="@+id/progressBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:indeterminateTint="@color/white"
+                android:layout_marginTop="8dp"
+                android:theme="@style/ThemeProgressBar"
                 android:visibility="gone"
                 tools:visibility="visible" />
 

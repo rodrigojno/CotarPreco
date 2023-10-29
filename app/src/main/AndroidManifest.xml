@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,14 +17,21 @@
         android:theme="@style/Theme.CotarPreco"
         tools:targetApi="31">
         <activity
-            android:name=".activity.SplashActivity"
+            android:name=".activity.empresa.EmpresaHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.empresa.EmpresaFinalizaCadastroActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.usuario.UsuarioHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.usuario.UsuarioFinalizaCadastroActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.app.SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.Splash.Activity">
-
-        </activity>
-        <activity
-            android:name=".activity.autenticacao.LoginActivity"
-            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,14 +39,14 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".activity.autenticacao.LoginActivity"
+            android:exported="true" />
+        <activity
             android:name=".activity.autenticacao.CriarContaActivity"
             android:exported="false" />
         <activity
             android:name=".activity.MainActivity"
-            android:exported="true" >
-
-        </activity>
-
+            android:exported="true" />
     </application>
 
 </manifest>

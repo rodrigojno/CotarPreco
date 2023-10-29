@@ -37,7 +37,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/edit_email"
+                android:id="@+id/edt_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -58,7 +58,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/edit_senha"
+                android:id="@+id/edt_senha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -70,14 +70,15 @@
                 android:padding="16dp" />
 
             <android.widget.Button
+                android:id="@+id/btn_criar_conta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/bg_edit"
                 android:text="Criar conta"
                 android:textAllCaps="false"
-                android:textColor="@color/cor_inicial_icone"
-                android:textStyle="bold" />
+                android:textSize="16sp"
+                android:textColor="@color/cor_inicial_icone" />
 
             <ProgressBar
                 android:id="@+id/progressBar"

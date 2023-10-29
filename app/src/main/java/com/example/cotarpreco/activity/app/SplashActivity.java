@@ -1,4 +1,4 @@
-package com.example.cotarpreco.activity;
+package com.example.cotarpreco.activity.app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.os.Looper;
 
 import com.example.cotarpreco.R;
+import com.example.cotarpreco.activity.MainActivity;
 import com.example.cotarpreco.activity.autenticacao.LoginActivity;
 import com.example.cotarpreco.helper.FirebaseHelper;
 

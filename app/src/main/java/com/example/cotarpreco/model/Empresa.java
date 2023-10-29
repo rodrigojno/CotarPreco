@@ -1,5 +1,7 @@
 package com.example.cotarpreco.model;
 
+import android.net.Uri;
+
 import com.example.cotarpreco.helper.FirebaseHelper;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
@@ -8,26 +10,31 @@ import com.google.firebase.database.Exclude;
 
 import java.io.Serializable;
 
-public class Usuario implements Serializable {
+public class Empresa implements Serializable {
     private String id;
     private String nome;
     private String email;
+    private String Senha;
     private String telefone;
-    private String senha;
+    private Boolean acesso;
+    private String categoria;
+    private Long dataCadastro;
 
-    public Usuario() {
+    public Empresa() {
     }
 
     public void salvar(){
-        DatabaseReference usuarioRef = FirebaseHelper.getDatabaseReference()
-                .child("usuarios")
+        DatabaseReference empresaRef = FirebaseHelper.getDatabaseReference()
+                .child("empresas")
                 .child(getId());
-        usuarioRef.setValue(this);
+        empresaRef.setValue(this);
 
         FirebaseUser user = FirebaseHelper.getAuth().getCurrentUser();
-        UserProfileChangeRequest perfil = new UserProfileChangeRequest.Builder()
-                .setDisplayName(getNome())
-                .build();
+        UserProfileChangeRequest perfil;
+
+            perfil = new UserProfileChangeRequest.Builder()
+                    .setDisplayName(getNome())
+                    .build();
 
         if(user != null) user.updateProfile(perfil);
     }
@@ -56,6 +63,15 @@ public class Usuario implements Serializable {
         this.email = email;
     }
 
+    @Exclude
+    public String getSenha() {
+        return Senha;
+    }
+
+    public void setSenha(String senha) {
+        Senha = senha;
+    }
+
     public String getTelefone() {
         return telefone;
     }
@@ -64,12 +80,27 @@ public class Usuario implements Serializable {
         this.telefone = telefone;
     }
 
-    @Exclude
-    public String getSenha() {
-        return senha;
+    public Boolean getAcesso() {
+        return acesso;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setAcesso(Boolean acesso) {
+        this.acesso = acesso;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public Long getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(Long dataCadastro) {
+        this.dataCadastro = dataCadastro;
     }
 }
