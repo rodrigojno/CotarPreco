@@ -8,7 +8,9 @@
     tools:context=".activity.autenticacao.CriarContaActivity"
     tools:ignore="ExtraText">
 
-    <include layout="@layout/toolbar_voltar" />
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar_voltar" />
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
@@ -21,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/cor_inicial_icone"
-            app:tabIndicatorColor="@color/white"
+            app:tabIndicatorColor="@color/cor_final_icone"
             app:tabInlineLabel="true"
             app:tabMode="fixed"
             app:tabTextAppearance="@style/CustomStyleTabLayout"

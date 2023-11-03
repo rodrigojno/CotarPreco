@@ -29,9 +29,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void ouvinteCliques() {
-        ibVerMais.setOnClickListener(view -> {
+        /*ibVerMais.setOnClickListener(view -> {
             PopupMenu popupMenu = new PopupMenu(this, ibVerMais);
-            popupMenu.getMenuInflater().inflate(R.menu.menu_toolbar, popupMenu.getMenu());
+            popupMenu.getMenuInflater().inflate(R.menu.bottom_nav_menu_usuario, popupMenu.getMenu());
 
             popupMenu.setOnMenuItemClickListener(menuItem -> {
                 if (menuItem.getItemId() == R.id.menu_sobre) {
@@ -45,12 +45,12 @@ public class MainActivity extends AppCompatActivity {
             });
 
             popupMenu.show();
-        });
+        });*/
     }
 
 
     private void iniciaComponentes() {
-        ibVerMais = findViewById(R.id.ib_verMais);
+        //ibVerMais = findViewById(R.id.ib_verMais);
 
         TextView text_titulo = findViewById(R.id.text_titulo);
         text_titulo.setText("Consulta Preços");

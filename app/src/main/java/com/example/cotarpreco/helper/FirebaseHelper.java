@@ -54,8 +54,8 @@ public class FirebaseHelper {
             mensagem = "Este e-mail já está em uso.";
         }else if(erro.contains("Password should be at least 6 characters")){
             mensagem = "Insira uma senha mais forte.";
-        }else if(erro.contains("")) {
-            mensagem = "Verifique se o e-mail ou a senha digitada estão corretos.";
+        }else if(erro.contains("An internal error has occurred")) {
+            mensagem = "Verifique se o e-mail ou a senha digitados estão corretos.";
         }
         return mensagem;
     }

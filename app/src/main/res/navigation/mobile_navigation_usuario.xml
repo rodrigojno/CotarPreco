@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation_usuario"
+    app:startDestination="@id/menu_home">
+
+    <fragment
+        android:id="@+id/menu_home"
+        android:name="com.example.cotarpreco.fragment.usuario.UsuarioHomeFragment"
+        android:label="@string/menu_inicio"
+        tools:layout="@layout/fragment_usuario_home" />
+    <fragment
+        android:id="@+id/menu_cotacoes"
+        android:name="com.example.cotarpreco.fragment.usuario.UsuarioCotacaoFragment"
+        android:label="@string/menu_cotacoes"
+        tools:layout="@layout/fragment_usuario_cotacao" />
+    <fragment
+        android:id="@+id/menu_perfil"
+        android:name="com.example.cotarpreco.fragment.usuario.UsuarioPerfilFragment"
+        android:label="@string/menu_perfil"
+        tools:layout="@layout/fragment_usuario_perfil" />
+</navigation>

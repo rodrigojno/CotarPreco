@@ -1,4 +1,4 @@
-package com.example.cotarpreco.fragment;
+package com.example.cotarpreco.fragment.usuario;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,14 +16,12 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.example.cotarpreco.R;
-import com.example.cotarpreco.activity.empresa.EmpresaFinalizaCadastroActivity;
 import com.example.cotarpreco.activity.usuario.UsuarioFinalizaCadastroActivity;
 import com.example.cotarpreco.helper.FirebaseHelper;
-import com.example.cotarpreco.model.Empresa;
 import com.example.cotarpreco.model.Login;
 import com.example.cotarpreco.model.Usuario;
 
-public class EmpresaFragment extends Fragment {
+public class UsuarioFragment extends Fragment {
 
     private EditText edt_email;
     private EditText edt_senha;
@@ -34,7 +32,7 @@ public class EmpresaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_empresa, container, false);
+        View view = inflater.inflate(R.layout.fragment_usuario, container, false);
 
         iniciaComponentes(view);
 
@@ -43,7 +41,9 @@ public class EmpresaFragment extends Fragment {
         return view;
     }
 
-    private void configCliques() { btn_criar_conta.setOnClickListener(v -> validaDados()); }
+    private void configCliques(){
+        btn_criar_conta.setOnClickListener(v -> validaDados());
+    }
 
     private void validaDados(){
         String email = edt_email.getText().toString();
@@ -56,11 +56,11 @@ public class EmpresaFragment extends Fragment {
 
                 progressBar.setVisibility(View.VISIBLE);
 
-                Empresa empresa = new Empresa();
-                empresa.setEmail(email);
-                empresa.setSenha(senha);
+                Usuario usuario = new Usuario();
+                usuario.setEmail(email);
+                usuario.setSenha(senha);
 
-                criarConta(empresa);
+                criarConta(usuario);
 
             }else {
                 edt_senha.requestFocus();
@@ -73,24 +73,24 @@ public class EmpresaFragment extends Fragment {
 
     }
 
-    private void criarConta(Empresa empresa){
+    private void criarConta(Usuario usuario){
         FirebaseHelper.getAuth().createUserWithEmailAndPassword(
-                empresa.getEmail(), empresa.getSenha()
+                usuario.getEmail(), usuario.getSenha()
         ).addOnCompleteListener(task -> {
             if(task.isSuccessful()){
 
                 String id = task.getResult().getUser().getUid();
 
-                empresa.setId(id);
-                empresa.salvar();
+                usuario.setId(id);
+                usuario.salvar();
 
-                Login login = new Login(id, "E", false);
+                Login login = new Login(id, "U", false);
                 login.salvar();
 
                 requireActivity().finish();
-                Intent intent = new Intent(requireActivity(), EmpresaFinalizaCadastroActivity.class);
+                Intent intent = new Intent(requireActivity(), UsuarioFinalizaCadastroActivity.class);
                 intent.putExtra("login", login);
-                intent.putExtra("empresa", empresa);
+                intent.putExtra("usuario", usuario);
                 startActivity(intent);
 
             }else {

@@ -20,6 +20,7 @@ import com.example.cotarpreco.activity.empresa.EmpresaFinalizaCadastroActivity;
 import com.example.cotarpreco.activity.empresa.EmpresaHomeActivity;
 import com.example.cotarpreco.activity.usuario.UsuarioFinalizaCadastroActivity;
 import com.example.cotarpreco.activity.usuario.UsuarioHomeActivity;
+import com.example.cotarpreco.databinding.ActivityLoginBinding;
 import com.example.cotarpreco.helper.FirebaseHelper;
 import com.example.cotarpreco.model.Empresa;
 import com.example.cotarpreco.model.Login;
@@ -31,51 +32,53 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText edt_email;
-    private EditText edt_senha;
-    private ProgressBar progressBar;
+    private ActivityLoginBinding binding;
 
     private Login login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        binding = ActivityLoginBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         configCliques();
 
-        iniciaComponentes();
+        binding.include.textTitulo.setText("Login");
+
 
     }
 
     private void configCliques(){
-        findViewById(R.id.text_criar_conta).setOnClickListener(v ->
+        binding.include.ibVoltar.setOnClickListener(v -> finish());
+        binding.textCriarConta.setOnClickListener(v ->
                 startActivity(new Intent(this, CriarContaActivity.class)));
 
-        findViewById(R.id.ib_voltar).setOnClickListener(v -> finish());
+        binding.textRecuperarConta.setOnClickListener(v ->
+                startActivity(new Intent(this, RecuperarContaActivity.class)));
 
     }
 
     public void validaDados(View view){
-        String email = edt_email.getText().toString();
-        String senha = edt_senha.getText().toString();
+        String email = binding.edtEmail.getText().toString();
+        String senha = binding.edtSenha.getText().toString();
 
         if(!email.isEmpty()){
             if(!senha.isEmpty()){
 
                 ocultarTeclado();
 
-                progressBar.setVisibility(View.VISIBLE);
+                binding.progressBar.setVisibility(View.VISIBLE);
 
                 logar(email, senha);
 
             }else {
-                edt_senha.requestFocus();
-                edt_senha.setError("Informe sua senha.");
+                binding.edtSenha.requestFocus();
+                binding.edtSenha.setError("Informe sua senha.");
             }
         }else {
-            edt_email.requestFocus();
-            edt_email.setError("Informe seu email.");
+            binding.edtEmail.requestFocus();
+            binding.edtEmail.setError("Informe seu email.");
         }
     }
 
@@ -86,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
             if(task.isSuccessful()){
                 verificaCadastro(task.getResult().getUser().getUid());
             }else {
-                progressBar.setVisibility(View.GONE);
+                binding.progressBar.setVisibility(View.GONE);
                 erroAutenticacao(FirebaseHelper.validaErros(task.getException().getMessage()));
             }
         });
@@ -191,20 +194,10 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void iniciaComponentes(){
-        TextView text_titulo = findViewById(R.id.text_titulo);
-        text_titulo.setText("Login");
-
-        edt_email = findViewById(R.id.edt_email);
-        edt_senha = findViewById(R.id.edt_senha);
-        progressBar = findViewById(R.id.progressBar);
-    }
-
     private void ocultarTeclado(){
         ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(
-                edt_email.getWindowToken(), 0
+                binding.edtEmail.getWindowToken(), 0
         );
     }
-
 
 }

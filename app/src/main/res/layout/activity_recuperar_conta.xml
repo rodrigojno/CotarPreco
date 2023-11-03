@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_app"
     tools:context=".activity.autenticacao.RecuperarContaActivity">
 
     <include
@@ -35,39 +34,38 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Informe seu e-mail cadastrado e você receberá um link para alterar a senha."
-                android:textColor="@color/white"
                 android:textAlignment="center"/>
 
             <EditText
-                android:id="@+id/edit_email"
+                android:id="@+id/edt_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:background="@drawable/bg_edit"
+                android:background="@drawable/bg_edit2"
                 android:drawableStart="@drawable/ic_email"
                 android:drawablePadding="16dp"
-                android:hint="Digite seu e-mail"
+                android:hint="E-mail"
                 android:inputType="textEmailAddress"
                 android:padding="16dp" />
 
-            <android.widget.Button
+            <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/bg_edit"
                 android:onClick="recuperarSenha"
                 android:text="Recuperar senha"
+                android:textSize="16sp"
                 android:textAllCaps="false"
-                android:textColor="@color/cor_inicial_icone"
-                android:textStyle="bold" />
+                android:textColor="@color/white" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="16dp"
-                android:theme="@style/ThemeProgressBar"
+                android:layout_marginTop="8dp"
+                android:theme="@style/ThemeProgressBar2"
                 android:visibility="gone"
                 tools:visibility="visible" />
 
