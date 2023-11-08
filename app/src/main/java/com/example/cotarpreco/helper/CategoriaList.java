@@ -8,7 +8,7 @@ import java.util.List;
 
 public class CategoriaList {
 
-    public static List<Categoria> getList(boolean todas){
+    /*public static List<Categoria> getList(boolean todas){
 
         List<Categoria> categoriaList = new ArrayList<>();
 
@@ -24,9 +24,10 @@ public class CategoriaList {
         categoriaList.add(new Categoria(R.drawable.ic_animais_de_estimacao, "Animais de estimação"));
         categoriaList.add(new Categoria(R.drawable.ic_agro_e_industria, "Agro e indústria"));
         categoriaList.add(new Categoria(R.drawable.ic_comercio_e_escritorio, "Comércio e escritório"));
+        categoriaList.add(new Categoria(R.drawable.ic_list, "Diversas categorias"));
         categoriaList.add(new Categoria(R.drawable.ic_servicos, "Serviços"));
 
                 return categoriaList;
-    }
+    }*/
 
 }

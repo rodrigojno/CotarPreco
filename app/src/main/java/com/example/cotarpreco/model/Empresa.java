@@ -23,7 +23,7 @@ public class Empresa implements Serializable {
     public Empresa() {
     }
 
-    public void salvar(){
+    public void salvar() {
         DatabaseReference empresaRef = FirebaseHelper.getDatabaseReference()
                 .child("empresas")
                 .child(getId());
@@ -32,11 +32,11 @@ public class Empresa implements Serializable {
         FirebaseUser user = FirebaseHelper.getAuth().getCurrentUser();
         UserProfileChangeRequest perfil;
 
-            perfil = new UserProfileChangeRequest.Builder()
-                    .setDisplayName(getNome())
-                    .build();
+        perfil = new UserProfileChangeRequest.Builder()
+                .setDisplayName(getNome())
+                .build();
 
-        if(user != null) user.updateProfile(perfil);
+        if (user != null) user.updateProfile(perfil);
     }
 
     public String getId() {

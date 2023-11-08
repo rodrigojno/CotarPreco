@@ -33,7 +33,7 @@ public class EmpresaFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_empresa, container, false);
 
         iniciaComponentes(view);
@@ -43,14 +43,16 @@ public class EmpresaFragment extends Fragment {
         return view;
     }
 
-    private void configCliques() { btn_criar_conta.setOnClickListener(v -> validaDados()); }
+    private void configCliques() {
+        btn_criar_conta.setOnClickListener(v -> validaDados());
+    }
 
-    private void validaDados(){
+    private void validaDados() {
         String email = edt_email.getText().toString();
         String senha = edt_senha.getText().toString();
 
-        if(!email.isEmpty()){
-            if(!senha.isEmpty()){
+        if (!email.isEmpty()) {
+            if (!senha.isEmpty()) {
 
                 ocultarTeclado();
 
@@ -62,22 +64,22 @@ public class EmpresaFragment extends Fragment {
 
                 criarConta(empresa);
 
-            }else {
+            } else {
                 edt_senha.requestFocus();
                 edt_senha.setError("Informe sua senha.");
             }
-        }else {
+        } else {
             edt_email.requestFocus();
             edt_email.setError("Informe seu e-mail.");
         }
 
     }
 
-    private void criarConta(Empresa empresa){
+    private void criarConta(Empresa empresa) {
         FirebaseHelper.getAuth().createUserWithEmailAndPassword(
                 empresa.getEmail(), empresa.getSenha()
         ).addOnCompleteListener(task -> {
-            if(task.isSuccessful()){
+            if (task.isSuccessful()) {
 
                 String id = task.getResult().getUser().getUid();
 
@@ -93,7 +95,7 @@ public class EmpresaFragment extends Fragment {
                 intent.putExtra("empresa", empresa);
                 startActivity(intent);
 
-            }else {
+            } else {
                 progressBar.setVisibility(View.GONE);
                 erroAutenticacao(FirebaseHelper.validaErros(task.getException().getMessage()));
             }
@@ -101,7 +103,7 @@ public class EmpresaFragment extends Fragment {
 
     }
 
-    private void erroAutenticacao(String msg){
+    private void erroAutenticacao(String msg) {
         androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(requireActivity());
         builder.setTitle("Atenção");
         builder.setMessage(msg);
@@ -114,14 +116,14 @@ public class EmpresaFragment extends Fragment {
 
     }
 
-    private void iniciaComponentes(View view){
+    private void iniciaComponentes(View view) {
         edt_email = view.findViewById(R.id.edt_email);
         edt_senha = view.findViewById(R.id.edt_senha);
         progressBar = view.findViewById(R.id.progressBar);
         btn_criar_conta = view.findViewById(R.id.btn_criar_conta);
     }
 
-    private void ocultarTeclado(){
+    private void ocultarTeclado() {
         ((InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(
                 btn_criar_conta.getWindowToken(), 0
         );

@@ -14,12 +14,12 @@ import com.example.cotarpreco.model.Categoria;
 
 import java.util.List;
 
-public class AdapterCategoria extends RecyclerView.Adapter<AdapterCategoria.MyViewHolder> {
+public class CategoriaAdapter extends RecyclerView.Adapter<CategoriaAdapter.MyViewHolder> {
 
     private List<Categoria> categoriaList;
     private OnClickListener onClickListener;
 
-    public AdapterCategoria(List<Categoria> categoriaList, OnClickListener onClickListener) {
+    public CategoriaAdapter(List<Categoria> categoriaList, OnClickListener onClickListener) {
         this.categoriaList = categoriaList;
         this.onClickListener = onClickListener;
     }
@@ -36,10 +36,11 @@ public class AdapterCategoria extends RecyclerView.Adapter<AdapterCategoria.MyVi
 
         Categoria categoria = categoriaList.get(position);
 
-        holder.img_categoria.setImageResource(categoria.getId());
-        holder.txt_categoria.setText(categoria.getNome());
+        //holder.img_categoria.setImageResource(Integer.parseInt(categoria.getId()));
 
-        holder.itemView.setOnClickListener(v -> onClickListener.OnClick(categoria));
+        holder.text_categoria.setText(categoria.getNome());
+
+        holder.itemView.setOnClickListener(v -> onClickListener.OnClick(categoria, position));
 
     }
 
@@ -49,18 +50,18 @@ public class AdapterCategoria extends RecyclerView.Adapter<AdapterCategoria.MyVi
     }
 
     public interface OnClickListener {
-        void OnClick(Categoria categoria);
+        void OnClick(Categoria categoria, int position);
     }
 
-    static class MyViewHolder extends RecyclerView.ViewHolder{
+    static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView img_categoria;
-        TextView txt_categoria;
+        //ImageView img_categoria;
+        TextView text_categoria;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            img_categoria = itemView.findViewById(R.id.img_categoria);
-            txt_categoria = itemView.findViewById(R.id.txt_categoria);
+            //img_categoria = itemView.findViewById(R.id.img_categoria);
+            text_categoria = itemView.findViewById(R.id.text_categoria);
         }
     }
 }

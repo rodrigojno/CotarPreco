@@ -18,6 +18,7 @@
 
     <style name="Theme.Splash.Activity" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="ThemeProgressBar" parent="Theme.CotarPreco">

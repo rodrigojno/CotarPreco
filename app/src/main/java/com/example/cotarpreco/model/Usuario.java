@@ -18,7 +18,7 @@ public class Usuario implements Serializable {
     public Usuario() {
     }
 
-    public void salvar(){
+    public void salvar() {
         DatabaseReference usuarioRef = FirebaseHelper.getDatabaseReference()
                 .child("usuarios")
                 .child(getId());
@@ -29,7 +29,7 @@ public class Usuario implements Serializable {
                 .setDisplayName(getNome())
                 .build();
 
-        if(user != null) user.updateProfile(perfil);
+        if (user != null) user.updateProfile(perfil);
     }
 
     public String getId() {

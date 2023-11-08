@@ -26,23 +26,23 @@ public class RecuperarContaActivity extends AppCompatActivity {
 
         configCliques();
 
-        binding.include.textTitulo.setText("Recuperar senha");
+        binding.include.textToolbar.setText("Recuperar senha");
     }
 
-    private void configCliques(){
+    private void configCliques() {
         binding.include.ibVoltar.setOnClickListener(v -> finish());
     }
 
     public void recuperarSenha(View view) {
         String email = binding.edtEmail.getText().toString().trim();
 
-        if(!email.isEmpty()) {
+        if (!email.isEmpty()) {
 
             binding.progressBar.setVisibility(View.VISIBLE);
 
             enviaEmail(email);
 
-        }else {
+        } else {
             binding.edtEmail.requestFocus();
             binding.edtEmail.setError("Informe seu email.");
         }
@@ -50,9 +50,9 @@ public class RecuperarContaActivity extends AppCompatActivity {
 
     private void enviaEmail(String email) {
         FirebaseHelper.getAuth().sendPasswordResetEmail(email).addOnCompleteListener(task -> {
-            if(task.isSuccessful()) {
+            if (task.isSuccessful()) {
                 Toast.makeText(this, "Email enviado com sucesso!", Toast.LENGTH_LONG).show();
-            }else {
+            } else {
                 String error = task.getException().getMessage();
                 Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
             }
@@ -60,7 +60,5 @@ public class RecuperarContaActivity extends AppCompatActivity {
         });
 
     }
-
-
 
 }

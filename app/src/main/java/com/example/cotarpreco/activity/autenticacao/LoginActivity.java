@@ -44,12 +44,12 @@ public class LoginActivity extends AppCompatActivity {
 
         configCliques();
 
-        binding.include.textTitulo.setText("Login");
+        binding.include.textToolbar.setText("Login");
 
 
     }
 
-    private void configCliques(){
+    private void configCliques() {
         binding.include.ibVoltar.setOnClickListener(v -> finish());
         binding.textCriarConta.setOnClickListener(v ->
                 startActivity(new Intent(this, CriarContaActivity.class)));
@@ -59,12 +59,12 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public void validaDados(View view){
+    public void validaDados(View view) {
         String email = binding.edtEmail.getText().toString();
         String senha = binding.edtSenha.getText().toString();
 
-        if(!email.isEmpty()){
-            if(!senha.isEmpty()){
+        if (!email.isEmpty()) {
+            if (!senha.isEmpty()) {
 
                 ocultarTeclado();
 
@@ -72,30 +72,30 @@ public class LoginActivity extends AppCompatActivity {
 
                 logar(email, senha);
 
-            }else {
+            } else {
                 binding.edtSenha.requestFocus();
                 binding.edtSenha.setError("Informe sua senha.");
             }
-        }else {
+        } else {
             binding.edtEmail.requestFocus();
             binding.edtEmail.setError("Informe seu email.");
         }
     }
 
-    private void logar(String email, String senha){
+    private void logar(String email, String senha) {
         FirebaseHelper.getAuth().signInWithEmailAndPassword(
                 email, senha
         ).addOnCompleteListener(task -> {
-            if(task.isSuccessful()){
+            if (task.isSuccessful()) {
                 verificaCadastro(task.getResult().getUser().getUid());
-            }else {
+            } else {
                 binding.progressBar.setVisibility(View.GONE);
                 erroAutenticacao(FirebaseHelper.validaErros(task.getException().getMessage()));
             }
         });
     }
 
-    private void verificaCadastro(String idUser){
+    private void verificaCadastro(String idUser) {
         DatabaseReference loginRef = FirebaseHelper.getDatabaseReference()
                 .child("login")
                 .child(idUser);
@@ -113,27 +113,27 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void verificaAcesso(Login login){
-        if(login != null){
-            if(login.getTipo().equals("U")){
-                if(login.getAcesso()){
+    private void verificaAcesso(Login login) {
+        if (login != null) {
+            if (login.getTipo().equals("U")) {
+                if (login.getAcesso()) {
                     finish();
                     startActivity(new Intent(getBaseContext(), UsuarioHomeActivity.class));
-                }else {
+                } else {
                     recuperaUsuario();
                 }
-            }else {
-                if(login.getAcesso()){
+            } else {
+                if (login.getAcesso()) {
                     finish();
                     startActivity(new Intent(getBaseContext(), EmpresaHomeActivity.class));
-                }else {
+                } else {
                     recuperaEmpresa();
                 }
             }
         }
     }
 
-    private void recuperaUsuario(){
+    private void recuperaUsuario() {
         DatabaseReference usuarioRef = FirebaseHelper.getDatabaseReference()
                 .child("usuarios")
                 .child(login.getId());
@@ -141,7 +141,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Usuario usuario = snapshot.getValue(Usuario.class);
-                if(usuario != null){
+                if (usuario != null) {
                     finish();
                     Intent intent = new Intent(getBaseContext(), UsuarioFinalizaCadastroActivity.class);
                     intent.putExtra("login", login);
@@ -157,7 +157,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void recuperaEmpresa(){
+    private void recuperaEmpresa() {
         DatabaseReference empresaRef = FirebaseHelper.getDatabaseReference()
                 .child("empresas")
                 .child(login.getId());
@@ -165,7 +165,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Empresa empresa = snapshot.getValue(Empresa.class);
-                if(empresa != null){
+                if (empresa != null) {
                     finish();
                     Intent intent = new Intent(getBaseContext(), EmpresaFinalizaCadastroActivity.class);
                     intent.putExtra("login", login);
@@ -181,7 +181,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void erroAutenticacao(String msg){
+    private void erroAutenticacao(String msg) {
         androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(this);
         builder.setTitle("Atenção");
         builder.setMessage(msg);
@@ -194,7 +194,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void ocultarTeclado(){
+    private void ocultarTeclado() {
         ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(
                 binding.edtEmail.getWindowToken(), 0
         );

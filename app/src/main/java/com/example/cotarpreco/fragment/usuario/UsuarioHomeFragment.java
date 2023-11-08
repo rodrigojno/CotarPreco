@@ -22,8 +22,8 @@ public class UsuarioHomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_usuario_home, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_usuario_home, container, false);
 
         iniciaComponentes(view);
 
@@ -33,17 +33,17 @@ public class UsuarioHomeFragment extends Fragment {
 
     }
 
-    private void configClique(){
+    private void configClique() {
         btn_nova_cotacao.setOnClickListener(v -> {
-            if(FirebaseHelper.getAutenticado()){
+            if (FirebaseHelper.getAutenticado()) {
                 startActivity(new Intent(getActivity(), FormCotacaoActivity.class));
-            }else {
+            } else {
                 startActivity(new Intent(getActivity(), LoginActivity.class));
             }
         });
     }
 
-    private void iniciaComponentes(View view){
+    private void iniciaComponentes(View view) {
         btn_nova_cotacao = view.findViewById(R.id.btn_nova_cotacao);
     }
 }

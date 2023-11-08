@@ -17,7 +17,7 @@ public class Login implements Serializable {
         this.acesso = acesso;
     }
 
-    public void salvar(){
+    public void salvar() {
         DatabaseReference loginRef = FirebaseHelper.getDatabaseReference()
                 .child("login")
                 .child(getId());

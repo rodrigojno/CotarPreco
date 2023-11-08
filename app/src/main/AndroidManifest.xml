@@ -17,7 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CotarPreco"
         tools:targetApi="31">
-
+        <activity
+            android:name=".activity.empresa.EmpresaTiposDeProdutosActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.usuario.FormCotacaoActivity"
             android:exported="false" />
@@ -31,7 +33,7 @@
             android:name=".activity.empresa.EmpresaRecebimentosActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.empresa.EmpresaCategoriaActivity"
+            android:name=".activity.empresa.EmpresaCategoriasActivity"
             android:exported="false" />
         <activity
             android:name=".activity.empresa.EmpresaConfigActivity"

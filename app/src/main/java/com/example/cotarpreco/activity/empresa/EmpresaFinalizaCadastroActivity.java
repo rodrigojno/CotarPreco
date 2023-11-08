@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -22,7 +23,9 @@ import android.widget.Toast;
 
 import com.example.cotarpreco.R;
 import com.example.cotarpreco.activity.usuario.UsuarioHomeActivity;
+import com.example.cotarpreco.databinding.ActivityEmpresaFinalizaCadastroBinding;
 import com.example.cotarpreco.helper.FirebaseHelper;
+import com.example.cotarpreco.model.Categoria;
 import com.example.cotarpreco.model.Empresa;
 import com.example.cotarpreco.model.Login;
 import com.example.cotarpreco.model.Usuario;
@@ -37,15 +40,9 @@ import java.util.List;
 
 public class EmpresaFinalizaCadastroActivity extends AppCompatActivity {
 
+    private ActivityEmpresaFinalizaCadastroBinding binding;
 
-
-
-    private EditText edt_nome;
-    private MaskEditText edt_telefone;
-    private EditText edt_categoria;
-    private ProgressBar progressBar;
-
-
+    private final int REQUEST_CATEGORIA = 100;
 
     private Empresa empresa;
     private Login login;
@@ -53,7 +50,8 @@ public class EmpresaFinalizaCadastroActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_empresa_finaliza_cadastro);
+        binding = ActivityEmpresaFinalizaCadastroBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         Bundle bundle = getIntent().getExtras();
         if(bundle != null){
@@ -61,44 +59,37 @@ public class EmpresaFinalizaCadastroActivity extends AppCompatActivity {
             login = (Login) bundle.getSerializable("login");
         }
 
-        iniciaComponentes();
-
     }
-
-
 
     public void validaDados(View view){
 
-        String nome = edt_nome.getText().toString().trim();
-        String telefone = edt_telefone.getUnMasked();
-        String categoria = edt_categoria.getText().toString().trim();
-
+        String nome = binding.edtNome.getText().toString().trim();
+        String telefone = binding.edtTelefone.getUnMasked();
+        String categoria = binding.edtCategoria.getText().toString().trim();
 
             if(!nome.isEmpty()){
-                if(edt_telefone.isDone()){
+                if(binding.edtTelefone.isDone()){
                     if(!categoria.isEmpty()){
 
                         ocultarTeclado();
 
-                        progressBar.setVisibility(View.VISIBLE);
+                        binding.progressBar.setVisibility(View.VISIBLE);
 
                         finalizaCadastro(nome, telefone, categoria);
 
                     }else {
-                        edt_categoria.requestFocus();
-                        edt_categoria.setError("Informe uma categoria para finalizar seu cadastro.");
+                        binding.edtCategoria.requestFocus();
+                        binding.edtCategoria.setError("Informe uma categoria para seu cadastro.");
                     }
                 }else {
-                    edt_telefone.requestFocus();
-                    edt_telefone.setError("Informe um telefone para contato.");
+                    binding.edtTelefone.requestFocus();
+                    binding.edtTelefone.setError("Informe um telefone para contato.");
                 }
             }else {
-                edt_nome.requestFocus();
-                edt_nome.setError("Informe um nome para seu cadastro.");
+                binding.edtNome.requestFocus();
+                binding.edtNome.setError("Informe um nome para seu cadastro.");
             }
-
     }
-
 
     private void finalizaCadastro(String nome, String telefone, String categoria){
         login.setAcesso(true);
@@ -113,18 +104,9 @@ public class EmpresaFinalizaCadastroActivity extends AppCompatActivity {
         startActivity(new Intent(this, EmpresaHomeActivity.class));
     }
 
-    private void iniciaComponentes(){
-
-        edt_nome = findViewById(R.id.edt_nome);
-        edt_telefone = findViewById(R.id.edt_telefone);
-        edt_categoria = findViewById(R.id.edt_categoria);
-        progressBar = findViewById(R.id.progressBar);
-    }
-
-
     private void ocultarTeclado(){
         ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(
-                edt_nome.getWindowToken(), 0
+                binding.edtNome.getWindowToken(), 0
         );
     }
 

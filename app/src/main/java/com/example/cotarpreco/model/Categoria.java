@@ -7,20 +7,15 @@ import java.io.Serializable;
 
 public class Categoria implements Serializable {
 
-    private int id;
+    private String id;
     private String nome;
 
-    public Categoria(int id, String nome) {
-        this.id = id;
-        this.nome = nome;
-    }
-
-    /*public Categoria(int ic_autos_e_pecas, String autosEPeças){
+    public Categoria() {
         DatabaseReference categoriaRef = FirebaseHelper.getDatabaseReference();
         setId(categoriaRef.push().getKey());
     }
 
-    public void salvar(){
+    public void salvar() {
         DatabaseReference categoriaRef = FirebaseHelper.getDatabaseReference()
                 .child("categorias")
                 .child(FirebaseHelper.getIdFirebase())
@@ -28,19 +23,19 @@ public class Categoria implements Serializable {
         categoriaRef.setValue(this);
     }
 
-    public void remover(){
+    public void remover() {
         DatabaseReference categoriaRef = FirebaseHelper.getDatabaseReference()
                 .child("categorias")
                 .child(FirebaseHelper.getIdFirebase())
                 .child(getId());
         categoriaRef.removeValue();
-    }*/
+    }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -27,15 +27,15 @@ public class CriarContaActivity extends AppCompatActivity {
 
         configCliques();
 
-        binding.include.textTitulo.setText("Cadastre-se");
+        binding.include.textToolbar.setText("Cadastre-se");
 
     }
 
-    private void configCliques(){
+    private void configCliques() {
         binding.include.ibVoltar.setOnClickListener(v -> finish());
     }
 
-    private void configTabsLayout(){
+    private void configTabsLayout() {
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         viewPagerAdapter.addFragment(new UsuarioFragment(), "Usuário");
@@ -46,6 +46,4 @@ public class CriarContaActivity extends AppCompatActivity {
         binding.tabLayout.setElevation(0);
         binding.tabLayout.setupWithViewPager(binding.viewPager);
     }
-
-
 }

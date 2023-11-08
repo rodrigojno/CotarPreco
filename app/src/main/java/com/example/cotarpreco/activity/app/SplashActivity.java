@@ -35,22 +35,20 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        new Handler(Looper.getMainLooper()).postDelayed(this::verificaAutenticacao, 3000);
-
         verificaAutenticacao();
 
     }
 
-    private void verificaAutenticacao(){
-        if(FirebaseHelper.getAutenticado()){
+    private void verificaAutenticacao() {
+        if (FirebaseHelper.getAutenticado()) {
             verificaCadastro();
-        }else {
+        } else {
             finish();
             startActivity(new Intent(this, UsuarioHomeActivity.class));
         }
     }
 
-    private void verificaCadastro(){
+    private void verificaCadastro() {
         DatabaseReference loginRef = FirebaseHelper.getDatabaseReference()
                 .child("login")
                 .child(FirebaseHelper.getIdFirebase());
@@ -68,20 +66,20 @@ public class SplashActivity extends AppCompatActivity {
         });
     }
 
-    private void verificaAcesso(Login login){
-        if(login != null){
-            if(login.getTipo().equals("U")){
-                if(login.getAcesso()){
+    private void verificaAcesso(Login login) {
+        if (login != null) {
+            if (login.getTipo().equals("U")) {
+                if (login.getAcesso()) {
                     finish();
                     startActivity(new Intent(getBaseContext(), UsuarioHomeActivity.class));
-                }else {
+                } else {
                     recuperaUsuario();
                 }
-            }else {
-                if(login.getAcesso()){
+            } else {
+                if (login.getAcesso()) {
                     finish();
                     startActivity(new Intent(getBaseContext(), EmpresaHomeActivity.class));
-                }else {
+                } else {
                     recuperaEmpresa();
                 }
             }
@@ -89,7 +87,7 @@ public class SplashActivity extends AppCompatActivity {
         }
     }
 
-    private void recuperaUsuario(){
+    private void recuperaUsuario() {
         DatabaseReference usuarioRef = FirebaseHelper.getDatabaseReference()
                 .child("usuarios")
                 .child(login.getId());
@@ -97,7 +95,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Usuario usuario = snapshot.getValue(Usuario.class);
-                if(usuario != null){
+                if (usuario != null) {
                     finish();
                     Intent intent = new Intent(getBaseContext(), UsuarioFinalizaCadastroActivity.class);
                     intent.putExtra("login", login);
@@ -113,7 +111,7 @@ public class SplashActivity extends AppCompatActivity {
         });
     }
 
-    private void recuperaEmpresa(){
+    private void recuperaEmpresa() {
         DatabaseReference empresaRef = FirebaseHelper.getDatabaseReference()
                 .child("empresas")
                 .child(login.getId());
@@ -121,7 +119,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Empresa empresa = snapshot.getValue(Empresa.class);
-                if(empresa != null){
+                if (empresa != null) {
                     finish();
                     Intent intent = new Intent(getBaseContext(), EmpresaFinalizaCadastroActivity.class);
                     intent.putExtra("login", login);

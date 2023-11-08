@@ -20,12 +20,12 @@ public class UsuarioPerfilActivity extends AppCompatActivity {
 
     }
 
-    private void configCliques(){
+    private void configCliques() {
         findViewById(R.id.ib_voltar).setOnClickListener(v -> finish());
     }
 
-    private void iniciaCompontentes(){
-        TextView text_titulo = findViewById(R.id.text_titulo);
+    private void iniciaCompontentes() {
+        TextView text_titulo = findViewById(R.id.text_toolbar);
         text_titulo.setText("Perfil");
     }
 

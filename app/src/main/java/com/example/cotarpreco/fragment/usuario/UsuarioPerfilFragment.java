@@ -35,7 +35,7 @@ public class UsuarioPerfilFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_usuario_perfil, container, false);
 
         iniciaComponentes(view);
@@ -53,20 +53,20 @@ public class UsuarioPerfilFragment extends Fragment {
         verificaAcesso();
     }
 
-    private void verificaAcesso(){
-        if(FirebaseHelper.getAutenticado()){
+    private void verificaAcesso() {
+        if (FirebaseHelper.getAutenticado()) {
             l_deslogado.setVisibility(View.GONE);
             l_logado.setVisibility(View.VISIBLE);
             menu_deslogar.setVisibility(View.VISIBLE);
             text_usuario.setText(FirebaseHelper.getAuth().getCurrentUser().getDisplayName());
-        }else {
+        } else {
             l_deslogado.setVisibility(View.VISIBLE);
             l_logado.setVisibility(View.GONE);
             menu_deslogar.setVisibility(View.GONE);
         }
     }
 
-    private void configCliques(){
+    private void configCliques() {
         btn_entrar.setOnClickListener(v -> startActivity(new Intent(requireActivity(), LoginActivity.class)));
         btn_cadastrar.setOnClickListener(v -> startActivity(new Intent(requireActivity(), CriarContaActivity.class)));
         menu_deslogar.setOnClickListener(v -> deslogar());
@@ -74,12 +74,12 @@ public class UsuarioPerfilFragment extends Fragment {
         menu_endereco.setOnClickListener(v -> startActivity(new Intent(requireActivity(), UsuarioEnderecosActivity.class)));
     }
 
-    private void deslogar(){
+    private void deslogar() {
         FirebaseHelper.getAuth().signOut();
         Navigation.findNavController(requireActivity(), R.id.nav_host_fragment).navigate(R.id.menu_home);
     }
 
-    private void iniciaComponentes(View view){
+    private void iniciaComponentes(View view) {
         l_logado = view.findViewById(R.id.l_logado);
         l_deslogado = view.findViewById(R.id.l_deslogado);
         menu_perfil = view.findViewById(R.id.menu_perfil);

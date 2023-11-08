@@ -2,16 +2,11 @@ package com.example.cotarpreco.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
-import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.cotarpreco.R;
-import com.example.cotarpreco.activity.autenticacao.LoginActivity;
-import com.example.cotarpreco.helper.FirebaseHelper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private void iniciaComponentes() {
         //ibVerMais = findViewById(R.id.ib_verMais);
 
-        TextView text_titulo = findViewById(R.id.text_titulo);
+        TextView text_titulo = findViewById(R.id.text_toolbar);
         text_titulo.setText("Consulta Preços");
     }
 
