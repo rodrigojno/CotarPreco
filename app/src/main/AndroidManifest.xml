@@ -21,7 +21,7 @@
             android:name=".activity.empresa.EmpresaTiposDeProdutosActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.usuario.FormCotacaoActivity"
+            android:name=".activity.usuario.UsuarioFormularioCotacaoActivity"
             android:exported="false" />
         <activity
             android:name=".activity.empresa.EmpresaEntregasActivity"

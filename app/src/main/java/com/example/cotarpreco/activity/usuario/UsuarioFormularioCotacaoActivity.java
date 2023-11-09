@@ -11,7 +11,7 @@ import com.example.cotarpreco.activity.empresa.EmpresaCategoriasActivity;
 import com.example.cotarpreco.databinding.ActivityFormCotacaoBinding;
 import com.example.cotarpreco.model.Categoria;
 
-public class FormCotacaoActivity extends AppCompatActivity {
+public class UsuarioFormularioCotacaoActivity extends AppCompatActivity {
 
     private ActivityFormCotacaoBinding binding;
 
@@ -48,15 +48,12 @@ public class FormCotacaoActivity extends AppCompatActivity {
 
         if (resultCode == RESULT_OK) {
             if (requestCode == REQUEST_CATEGORIA) {
+                assert data != null;
                 Categoria categoria = (Categoria) data.getSerializableExtra("categoriaSelecionada");
+                assert categoria != null;
                 categoriaSelecinada = categoria.getNome();
                 binding.btnCategoria.setText(categoriaSelecinada);
-            } else if (true) {// Camera
-
-            } else { //Galeria
-
             }
-
         }
     }
 }
