@@ -49,9 +49,12 @@ public class EmpresaConfigActivity extends AppCompatActivity {
         empresaRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                empresa = snapshot.getValue(Empresa.class);
-
-                configDados();
+                if(snapshot.exists()){
+                    empresa = snapshot.getValue(Empresa.class);
+                    configDados();
+                }else {
+                    configSalvar(false);
+                }
             }
 
             @Override
@@ -97,6 +100,7 @@ public class EmpresaConfigActivity extends AppCompatActivity {
                     empresa.setTelefone(telefone);
                     empresa.setCategoria(categoria);
                     empresa.salvar();
+
                     configSalvar(false);
                     Toast.makeText(this, "Dados salvos com sucesso!", Toast.LENGTH_SHORT).show();
 

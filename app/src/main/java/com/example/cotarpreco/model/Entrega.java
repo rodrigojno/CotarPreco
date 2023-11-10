@@ -1,15 +1,23 @@
 package com.example.cotarpreco.model;
 
+import com.example.cotarpreco.helper.FirebaseHelper;
+import com.google.firebase.database.DatabaseReference;
+
+import java.util.List;
+
 public class Entrega {
     private Boolean status = false;
     private String descricao;
     private Double taxa;
 
-    public Entrega(Boolean status) {
+    public Entrega() {
     }
 
-    public void salvar(){
-
+    public static void salvar(List<Entrega> entregaList){
+        DatabaseReference entregasRef = FirebaseHelper.getDatabaseReference()
+                .child("entregas")
+                .child(FirebaseHelper.getIdFirebase());
+        entregasRef.setValue(entregaList);
     }
 
     public Boolean getStatus() {
