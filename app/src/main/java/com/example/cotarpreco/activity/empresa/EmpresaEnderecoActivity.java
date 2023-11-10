@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.cotarpreco.R;
 import com.example.cotarpreco.databinding.ActivityEmpresaEnderecoBinding;
@@ -92,6 +93,7 @@ public class EmpresaEnderecoActivity extends AppCompatActivity {
                     endereco.salvar();
 
                     configSalvar(false);
+                    Toast.makeText(this, "Dados salvos com sucesso!", Toast.LENGTH_SHORT).show();
 
                 }else {
                     binding.edtMunicipio.requestFocus();

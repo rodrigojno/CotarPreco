@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.Toast;
 
 import com.example.cotarpreco.R;
 import com.example.cotarpreco.databinding.ActivityEmpresaRecebimentosBinding;
@@ -89,6 +90,7 @@ public class EmpresaRecebimentosActivity extends AppCompatActivity {
 
 
         Pagamento.salvar(pagamentoList);
+        Toast.makeText(this, "Dados salvos com sucesso!", Toast.LENGTH_SHORT).show();
     }
 
     private void recuperaPagamentos(){
@@ -108,6 +110,7 @@ public class EmpresaRecebimentosActivity extends AppCompatActivity {
 
                 }else {
                     configSalvar(false);
+
                 }
             }
 

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.cotarpreco.R;
 import com.example.cotarpreco.databinding.ActivityEmpresaCategoriaBinding;
@@ -127,6 +128,7 @@ public class EmpresaEntregasActivity extends AppCompatActivity {
 
         Entrega.salvar(entregaList);
         configSalvar(false);
+        Toast.makeText(this, "Dados salvos com sucesso!", Toast.LENGTH_SHORT).show();
 
     }
 
