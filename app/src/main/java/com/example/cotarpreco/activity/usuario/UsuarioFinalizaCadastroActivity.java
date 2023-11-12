@@ -49,7 +49,7 @@ public class UsuarioFinalizaCadastroActivity extends AppCompatActivity {
 
                     binding.progressBar.setVisibility(View.VISIBLE);
 
-                    finalizaCadastro(nome);
+                    finalizaCadastro(nome, telefone);
 
                 } else {
                     binding.edtTelefone.requestFocus();
@@ -66,11 +66,12 @@ public class UsuarioFinalizaCadastroActivity extends AppCompatActivity {
 
     }
 
-    private void finalizaCadastro(String nome) {
+    private void finalizaCadastro(String nome, String telefone) {
         login.setAcesso(true);
         login.salvar();
 
         usuario.setNome(nome);
+        usuario.setTelefone(telefone);
         usuario.salvar();
 
         finish();

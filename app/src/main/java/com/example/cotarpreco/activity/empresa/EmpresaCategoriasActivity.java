@@ -51,7 +51,7 @@ public class EmpresaCategoriasActivity extends AppCompatActivity implements Cate
         binding = ActivityEmpresaCategoriaBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        iniciaComponentes();
+        rv_categorias = binding.rvCategorias;
 
         configCliques();
 
@@ -197,12 +197,6 @@ public class EmpresaCategoriasActivity extends AppCompatActivity implements Cate
 
         AlertDialog dialog = builder.create();
         dialog.show();
-
-    }
-
-    private void iniciaComponentes() {
-
-        rv_categorias = findViewById(R.id.rv_categorias);
 
     }
 
