@@ -9,7 +9,6 @@ public class Endereco implements Serializable {
     private String id;
     private String logradouro;
     private String referencia;
-    private String numero;
     private String cep;
     private String bairro;
     private String municipio;
@@ -54,10 +53,6 @@ public class Endereco implements Serializable {
     public String getReferencia() { return referencia; }
 
     public void setReferencia(String referencia) { this.referencia = referencia; }
-
-    public String getNumero() { return numero; }
-
-    public void setNumero(String numero) { this.numero = numero; }
 
     public String getCep() { return cep; }
 

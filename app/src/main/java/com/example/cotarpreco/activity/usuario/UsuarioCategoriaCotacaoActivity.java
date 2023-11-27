@@ -1,6 +1,4 @@
-package com.example.cotarpreco.activity.empresa;
-
-import static androidx.appcompat.app.AlertDialog.*;
+package com.example.cotarpreco.activity.usuario;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -11,12 +9,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.cotarpreco.R;
 import com.example.cotarpreco.adapter.CategoriaAdapter;
-import com.example.cotarpreco.databinding.ActivityEmpresaCategoriaBinding;
-import com.example.cotarpreco.helper.CategoriaList;
+import com.example.cotarpreco.databinding.ActivityUsuarioCategoriaCotacaoBinding;
 import com.example.cotarpreco.helper.FirebaseHelper;
 import com.example.cotarpreco.model.Categoria;
 import com.google.firebase.database.DataSnapshot;
@@ -30,12 +26,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class EmpresaCategoriasActivity extends AppCompatActivity implements CategoriaAdapter.OnClickListener {
+public class UsuarioCategoriaCotacaoActivity extends AppCompatActivity implements CategoriaAdapter.OnClickListener{
 
     private CategoriaAdapter categoriaAdapter;
     private List<Categoria> categoriaList = new ArrayList<>();
 
-    private ActivityEmpresaCategoriaBinding binding;
+    private @NonNull ActivityUsuarioCategoriaCotacaoBinding binding;
 
     private SwipeableRecyclerView rv_categorias;
 
@@ -48,7 +44,8 @@ public class EmpresaCategoriasActivity extends AppCompatActivity implements Cate
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityEmpresaCategoriaBinding.inflate(getLayoutInflater());
+        binding = ActivityUsuarioCategoriaCotacaoBinding.inflate(getLayoutInflater());
+
         setContentView(binding.getRoot());
 
         rv_categorias = binding.rvCategorias;
@@ -77,7 +74,7 @@ public class EmpresaCategoriasActivity extends AppCompatActivity implements Cate
 
             @Override
             public void onSwipedRight(int position) {
-                removerCategoria(categoriaList.get(position));
+                dialogRemoverCategoria(categoriaList.get(position));
             }
         });
 
@@ -87,7 +84,7 @@ public class EmpresaCategoriasActivity extends AppCompatActivity implements Cate
         binding.include.ibVoltar.setOnClickListener(view -> finish());
         binding.include.ibAdd.setOnClickListener(v -> {
             novaCategoria = true;
-            incluirCategoria();
+            showDialog();
         });
     }
 
@@ -121,7 +118,7 @@ public class EmpresaCategoriasActivity extends AppCompatActivity implements Cate
         });
     }
 
-    private void incluirCategoria() {
+    private void showDialog() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View view = getLayoutInflater().inflate(R.layout.dialog_add_categoria, null);
@@ -175,7 +172,7 @@ public class EmpresaCategoriasActivity extends AppCompatActivity implements Cate
         dialog.show();
     }
 
-    private void removerCategoria(Categoria categoria) {
+    private void dialogRemoverCategoria(Categoria categoria) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Remover categoria");
         builder.setMessage("Deseja remover a categoria selecionada?");
@@ -206,7 +203,8 @@ public class EmpresaCategoriasActivity extends AppCompatActivity implements Cate
         categoriaIndex = position;
         novaCategoria = false;
 
-        incluirCategoria();
+        showDialog();
 
     }
+
 }

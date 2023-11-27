@@ -17,7 +17,6 @@ import com.example.cotarpreco.activity.empresa.EmpresaConfigActivity;
 import com.example.cotarpreco.activity.empresa.EmpresaEnderecoActivity;
 import com.example.cotarpreco.activity.empresa.EmpresaEntregasActivity;
 import com.example.cotarpreco.activity.empresa.EmpresaRecebimentosActivity;
-import com.example.cotarpreco.activity.empresa.EmpresaTiposDeProdutosActivity;
 import com.example.cotarpreco.activity.usuario.UsuarioHomeActivity;
 import com.example.cotarpreco.helper.FirebaseHelper;
 
@@ -26,7 +25,6 @@ public class EmpresaConfigFragment extends Fragment {
     private TextView text_empresa;
     private LinearLayout menu_empresa;
     private LinearLayout menu_categorias;
-    private LinearLayout menu_tipos_produtos;
     private LinearLayout menu_recebimentos;
     private LinearLayout menu_endereco;
     private LinearLayout menu_entregas;
@@ -56,7 +54,6 @@ public class EmpresaConfigFragment extends Fragment {
     private void configCliques() {
         menu_empresa.setOnClickListener(v -> startActivity(new Intent(requireActivity(), EmpresaConfigActivity.class)));
         menu_categorias.setOnClickListener(v -> startActivity(new Intent(requireActivity(), EmpresaCategoriasActivity.class)));
-        menu_tipos_produtos.setOnClickListener(v -> startActivity(new Intent(requireActivity(), EmpresaTiposDeProdutosActivity.class)));
         menu_recebimentos.setOnClickListener(v -> startActivity(new Intent(requireActivity(), EmpresaRecebimentosActivity.class)));
         menu_endereco.setOnClickListener(v -> startActivity(new Intent(requireActivity(), EmpresaEnderecoActivity.class)));
         menu_entregas.setOnClickListener(v -> startActivity(new Intent(requireActivity(), EmpresaEntregasActivity.class)));
@@ -74,7 +71,6 @@ public class EmpresaConfigFragment extends Fragment {
         text_empresa = view.findViewById(R.id.text_empresa);
         menu_empresa = view.findViewById(R.id.menu_empresa);
         menu_categorias = view.findViewById(R.id.menu_categorias);
-        menu_tipos_produtos = view.findViewById(R.id.menu_tipos_produtos);
         menu_recebimentos = view.findViewById(R.id.menu_recebimentos);
         menu_endereco = view.findViewById(R.id.menu_endereco);
         menu_entregas = view.findViewById(R.id.menu_entregas);

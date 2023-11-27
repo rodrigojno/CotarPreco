@@ -10,7 +10,7 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Digite abaixo o nome da categoria e aperte em salvar."
+        android:text="Digite abaixo a(s) categoria(s) que a empresa atua e aperte em salvar."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.usuario.UsuarioFormularioCotacaoActivity">
+    tools:context=".activity.usuario.UsuarioFormCotacaoActivity">
 
     <include
         android:id="@+id/include"
@@ -22,7 +22,8 @@
         android:orientation="vertical"
         android:paddingStart="24dp"
         android:paddingEnd="24dp"
-        android:text="Enviar solicitação"
+        android:text="Enviar"
+        android:onClick="validaDados"
         android:textAllCaps="false"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -49,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
-                android:text="Categoria"
+                android:text="Categoria do produto"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -66,11 +67,11 @@
                 android:paddingStart="16dp"
                 android:paddingEnd="0dp"
                 android:padding="16dp"
-                android:text="Selecione uma categoria"
+                android:text="Informe a(s) categoria(s)"
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
                 android:textColor="#787878"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -81,27 +82,24 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
-                android:text="Tipo"
+                android:text="Tipo de produto"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_categoria" />
 
-            <android.widget.Button
-                android:id="@+id/button2"
-                style="?android:attr/borderlessButtonStyle"
+            <EditText
+                android:id="@+id/edt_nome_produto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="24dp"
                 android:background="@drawable/bg_edit2"
-                android:hint="Selecione"
+                android:hint="Informe o tipo de produto"
+                android:inputType="text"
                 android:padding="16dp"
-                android:textAlignment="textStart"
-                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
 
             <TextView
                 android:id="@+id/textView"
@@ -109,12 +107,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
-                android:text="Marca e modelo"
+                android:text="Marca e modelo do produto"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button2" />
+                app:layout_constraintTop_toBottomOf="@+id/edt_nome_produto" />
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/edt_marca"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -138,7 +136,7 @@
                 android:layout_marginEnd="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText"
+                app:layout_constraintTop_toBottomOf="@+id/edt_marca"
                 android:baselineAligned="false">
 
                 <LinearLayout
@@ -155,7 +153,7 @@
                         android:text="Quantidade" />
 
                     <EditText
-                        android:id="@+id/editText6"
+                        android:id="@+id/edt_quantidade"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -172,23 +170,14 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/textView9"
+                    <CheckBox
+                        android:id="@+id/cb_produto_similar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Unidade" />
-
-                    <android.widget.Button
-                        android:id="@+id/button3"
-                        style="?android:attr/borderlessButtonStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
                         android:background="@drawable/bg_edit2"
-                        android:hint="Selecione"
                         android:padding="16dp"
-                        android:textAlignment="textStart"
-                        android:textSize="16sp" />
+                        android:textColor="#787878"
+                        android:text="Aceito cotação de produto similar" />
 
                 </LinearLayout>
 
@@ -207,14 +196,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
             <EditText
-                android:id="@+id/editText7"
+                android:id="@+id/edt_descricao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="24dp"
                 android:background="@drawable/bg_edit2"
-                android:hint="Informe mais detalhes que achar necessário, assim como se aceita cotação de produtos similares."
+                android:hint="Informe demais informações sobre o produto ou que achar necessário."
                 android:padding="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -230,7 +219,7 @@
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText7"
+                app:layout_constraintTop_toBottomOf="@+id/edt_descricao"
                 tools:visibility="visible" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

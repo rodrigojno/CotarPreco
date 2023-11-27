@@ -41,7 +41,7 @@ public class UsuarioPerfilActivity extends AppCompatActivity {
 
     private void configCliques() {
         binding.include.ibVoltar.setOnClickListener(v -> finish());
-        binding.include.ibSalvar.setOnClickListener(v -> validaDados());
+        binding.include.ibSalvar.setOnClickListener(v -> atualizarDados());
     }
 
     private void recuperaUsuario(){
@@ -85,7 +85,7 @@ public class UsuarioPerfilActivity extends AppCompatActivity {
         }
     }
 
-    private void validaDados(){
+    private void atualizarDados(){
         String nome = binding.edtNome.getText().toString().trim();
         String telefone = binding.edtTelefone.getUnMasked();
 

@@ -30,7 +30,7 @@ public class UsuarioFormEnderecoActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             endereco = (Endereco) bundle.getSerializable("enderecoSelecionado");
-            configDados();
+            atualizarDados();
         }
 
         configCliques();
@@ -40,7 +40,7 @@ public class UsuarioFormEnderecoActivity extends AppCompatActivity {
 
     private void configCliques() {
         binding.include.ibVoltar.setOnClickListener(v -> finish());
-        binding.include.ibSalvar.setOnClickListener(v -> validaDados());
+        binding.include.ibSalvar.setOnClickListener(v -> incluirEnderecoUsuario());
     }
 
     private void configSalvar(boolean progress) {
@@ -53,56 +53,50 @@ public class UsuarioFormEnderecoActivity extends AppCompatActivity {
         }
     }
 
-    private void validaDados() {
+    private void incluirEnderecoUsuario() {
         String logradouro = binding.edtLogradouro.getText().toString().trim();
         String referencia = binding.edtReferencia.getText().toString().trim();
-        String numero = binding.edtNumero.getText().toString();
         String cep = binding.edtCep.getUnMasked();
         String bairro = binding.edtBairro.getText().toString().trim();
         String municipio = binding.edtMunicipio.getText().toString().trim();
 
         if (!logradouro.isEmpty()) {
             if (!referencia.isEmpty()) {
-                if (!numero.isEmpty()) {
-                    if (!cep.isEmpty()) {
-                        if (!bairro.isEmpty()) {
-                            if (!municipio.isEmpty()) {
 
-                                configSalvar(true);
+                if (!bairro.isEmpty()) {
+                    if (!municipio.isEmpty()) {
+                        if (!cep.isEmpty()) {
 
-                                if (endereco == null) endereco = new Endereco();
-                                endereco.setLogradouro(logradouro);
-                                endereco.setReferencia(referencia);
-                                endereco.setNumero(numero);
-                                endereco.setCep(cep);
-                                endereco.setBairro(bairro);
-                                endereco.setMunicipio(municipio);
-                                endereco.salvar();
+                            configSalvar(true);
 
-                                if(novoEndereco){
-                                    finish();
-                                }else {
-                                    ocultarTeclado();
-                                    Toast.makeText(this, "Dados salvos com sucesso!", Toast.LENGTH_SHORT).show();
-                                }
+                            if (endereco == null) endereco = new Endereco();
+                            endereco.setLogradouro(logradouro);
+                            endereco.setReferencia(referencia);
+                            endereco.setCep(cep);
+                            endereco.setBairro(bairro);
+                            endereco.setMunicipio(municipio);
+                            endereco.salvar();
 
-                                configSalvar(false);
-
+                            if (novoEndereco) {
+                                finish();
                             } else {
-                                binding.edtMunicipio.requestFocus();
-                                binding.edtMunicipio.setError("Informe o município.");
+                                ocultarTeclado();
+                                Toast.makeText(this, "Dados salvos com sucesso!", Toast.LENGTH_SHORT).show();
                             }
+
+                            configSalvar(false);
+
                         } else {
-                            binding.edtBairro.requestFocus();
-                            binding.edtBairro.setError("Informe o bairro.");
+                            binding.edtCep.requestFocus();
+                            binding.edtCep.setError("Informe o CEP");
                         }
                     } else {
-                        binding.edtCep.requestFocus();
-                        binding.edtCep.setError("Informe o CEP");
+                        binding.edtMunicipio.requestFocus();
+                        binding.edtMunicipio.setError("Informe o município.");
                     }
                 } else {
-                    binding.edtNumero.requestFocus();
-                    binding.edtNumero.setError("Informe o número.");
+                    binding.edtBairro.requestFocus();
+                    binding.edtBairro.setError("Informe o bairro.");
                 }
             } else {
                 binding.edtReferencia.requestFocus();
@@ -115,10 +109,9 @@ public class UsuarioFormEnderecoActivity extends AppCompatActivity {
 
     }
 
-    private void configDados() {
+    private void atualizarDados() {
         binding.edtLogradouro.setText(endereco.getLogradouro());
         binding.edtReferencia.setText(endereco.getReferencia());
-        binding.edtNumero.setText(endereco.getNumero());
         binding.edtCep.setText(endereco.getCep());
         binding.edtBairro.setText(endereco.getBairro());
         binding.edtMunicipio.setText(endereco.getMunicipio());

@@ -18,13 +18,19 @@
         android:theme="@style/Theme.CotarPreco"
         tools:targetApi="31">
         <activity
+            android:name=".activity.usuario.UsuarioCategoriaCotacaoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.usuario.UsuarioPedidoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.usuario.UsuarioFormCotacaoActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.usuario.UsuarioFormEnderecoActivity"
             android:exported="false" />
         <activity
             android:name=".activity.empresa.EmpresaTiposDeProdutosActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.usuario.UsuarioFormularioCotacaoActivity"
             android:exported="false" />
         <activity
             android:name=".activity.empresa.EmpresaEntregasActivity"

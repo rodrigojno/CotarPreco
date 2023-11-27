@@ -42,7 +42,7 @@ public class EmpresaEnderecoActivity extends AppCompatActivity {
         binding.include.textToolbar.setText("Meu endereço");
     }
 
-    private void recuperaEndereco(){
+    private void recuperaEndereco() {
 
         DatabaseReference enderecoRef = FirebaseHelper.getDatabaseReference()
                 .child("enderecos")
@@ -50,12 +50,12 @@ public class EmpresaEnderecoActivity extends AppCompatActivity {
         enderecoRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    for (DataSnapshot ds : snapshot.getChildren()){
+                if (snapshot.exists()) {
+                    for (DataSnapshot ds : snapshot.getChildren()) {
                         endereco = ds.getValue(Endereco.class);
                     }
                     configDados();
-                }else {
+                } else {
                     configSalvar(false);
                 }
             }
@@ -67,19 +67,18 @@ public class EmpresaEnderecoActivity extends AppCompatActivity {
         });
     }
 
-    private void configSalvar(boolean progress){
-        if(progress){
+    private void configSalvar(boolean progress) {
+        if (progress) {
             binding.include.progressBar.setVisibility(View.VISIBLE);
             binding.include.ibSalvar.setVisibility(View.GONE);
-        }else {
+        } else {
             binding.include.progressBar.setVisibility(View.GONE);
             binding.include.ibSalvar.setVisibility(View.VISIBLE);
         }
     }
 
-    private void configDados(){
+    private void configDados() {
         binding.edtLogradouro.setText(endereco.getLogradouro());
-        binding.edtNumero.setText(endereco.getNumero());
         binding.edtCep.setText(endereco.getCep());
         binding.edtBairro.setText(endereco.getBairro());
         binding.edtMunicipio.setText(endereco.getMunicipio());
@@ -87,59 +86,53 @@ public class EmpresaEnderecoActivity extends AppCompatActivity {
         configSalvar(false);
     }
 
-    private void validaDados(){
+    private void atualizarDados() {
         String logradouro = binding.edtLogradouro.getText().toString().trim();
-        String numero = binding.edtNumero.getText().toString();
         String cep = binding.edtCep.getUnMasked();
         String bairro = binding.edtBairro.getText().toString().trim();
         String municipio = binding.edtMunicipio.getText().toString().trim();
 
-        if(!logradouro.isEmpty()){
-            if(!numero.isEmpty()){
-                if(!cep.isEmpty()){
-                    if(!bairro.isEmpty()){
-                        if(!municipio.isEmpty()){
+        if (!logradouro.isEmpty()) {
+            if (!bairro.isEmpty()) {
+                if (!municipio.isEmpty()) {
+                    if (!cep.isEmpty()) {
 
-                            configSalvar(true);
+                        configSalvar(true);
 
-                            if(endereco == null) endereco = new Endereco();
-                            endereco.setLogradouro(logradouro);
-                            endereco.setNumero(numero);
-                            endereco.setCep(cep);
-                            endereco.setBairro(bairro);
-                            endereco.setMunicipio(municipio);
-                            endereco.salvar();
+                        if (endereco == null) endereco = new Endereco();
+                        endereco.setLogradouro(logradouro);
+                        endereco.setCep(cep);
+                        endereco.setBairro(bairro);
+                        endereco.setMunicipio(municipio);
+                        endereco.salvar();
 
-                            configSalvar(false);
-                            ocultarTeclado();
-                            Toast.makeText(this, "Dados salvos com sucesso!", Toast.LENGTH_SHORT).show();
+                        configSalvar(false);
+                        ocultarTeclado();
+                        Toast.makeText(this, "Dados salvos com sucesso!", Toast.LENGTH_SHORT).show();
 
-                        }else {
-                            binding.edtMunicipio.requestFocus();
-                            binding.edtMunicipio.setError("Informe o município.");
-                        }
-                    }else {
-                        binding.edtBairro.requestFocus();
-                        binding.edtBairro.setError("Informe o bairro.");
+                    } else {
+                        binding.edtCep.requestFocus();
+                        binding.edtCep.setError("Informe o CEP");
                     }
-                }else {
-                    binding.edtCep.requestFocus();
-                    binding.edtCep.setError("Informe o CEP");
+                } else {
+                    binding.edtMunicipio.requestFocus();
+                    binding.edtMunicipio.setError("Informe o município.");
                 }
-            }else {
-                binding.edtNumero.requestFocus();
-                binding.edtNumero.setError("Informe o número.");
+            } else {
+                binding.edtBairro.requestFocus();
+                binding.edtBairro.setError("Informe o bairro.");
             }
-        }else {
+
+        } else {
             binding.edtLogradouro.requestFocus();
             binding.edtLogradouro.setError("Informe o endereço.");
         }
 
     }
 
-    private void configCliques(){
+    private void configCliques() {
         binding.include.ibVoltar.setOnClickListener(v -> finish());
-        binding.include.ibSalvar.setOnClickListener(v -> validaDados());
+        binding.include.ibSalvar.setOnClickListener(v -> atualizarDados());
     }
 
     private void ocultarTeclado() {

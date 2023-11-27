@@ -76,7 +76,7 @@ public class UsuarioEnderecosActivity extends AppCompatActivity implements Ender
 
             @Override
             public void onSwipedRight(int position) {
-                dialogRemoverEndereco(enderecoList.get(position));
+                removerEnderecoUsuario(enderecoList.get(position));
             }
         });
     }
@@ -113,7 +113,7 @@ public class UsuarioEnderecosActivity extends AppCompatActivity implements Ender
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private void dialogRemoverEndereco(Endereco endereco) {
+    private void removerEnderecoUsuario(Endereco endereco) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Remover endereço");
         builder.setMessage("Deseja remover o endereço selecionado?");

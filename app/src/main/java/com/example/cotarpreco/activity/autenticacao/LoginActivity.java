@@ -103,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 login = snapshot.getValue(Login.class);
-                verificaAcesso(login);
+                verificarAcesso(login);
             }
 
             @Override
@@ -113,7 +113,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void verificaAcesso(Login login) {
+    private void verificarAcesso(Login login) {
         if (login != null) {
             if (login.getTipo().equals("U")) {
                 if (login.getAcesso()) {
